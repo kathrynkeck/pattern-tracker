@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--light-yellow);
+    color: var(--text)
+}
+
+:root {
+    /* Theme Palette Definitions */
+    --light-blue: #b9d6f1;
+    --medium-blue: #68aceb;
+    --light-yellow: #fff3d7;
+    --magenta: #710043;
+    --green: #afe059;
+    --text: #132f4b;
+}

@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.*;
+import java.util.List;
 
 @Service
 public class PatternService {
@@ -43,6 +44,10 @@ public class PatternService {
         } catch (IOException e) {
             throw new RuntimeException("Failed to store file", e);
         }
+    }
+
+    public List<Pattern> getAllPatterns() {
+        return patternRepository.findAll();
     }
 
     public Pattern getPatternById(Long id) {

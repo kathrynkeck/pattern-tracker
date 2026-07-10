@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/patterns")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -23,6 +26,12 @@ public class PatternController {
                                                  @RequestParam("file") MultipartFile file) {
         Pattern savedPattern = patternService.savePattern(title, file);
         return ResponseEntity.ok(savedPattern);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<Pattern>> getAllPatterns() {
+        List<Pattern> patterns = patternService.getAllPatterns();
+        return ResponseEntity.ok(patterns);
     }
 
     @GetMapping("/{fileId}")

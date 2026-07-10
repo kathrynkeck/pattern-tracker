@@ -1,37 +1,45 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { PatternService, Pattern } from '../../services/pattern.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-pattern-viewer',
   standalone: true,
-  imports: [CommonModule, PdfViewerModule],
+  imports: [CommonModule, PdfViewerModule, RouterLink],
   templateUrl: './pattern-viewer.component.html',
   styleUrl: './pattern-viewer.component.css',
 })
 export class PatternViewerComponent implements OnInit {
-  patternData: Pattern | null = null;
-  pdfSrc: string = '';
-  isLoading: boolean = true;
-  errorMessage: string = '';
+  patternTitle = signal<string>('');
+  blobUrl = signal<string | null>(null);
 
-  constructor(private patternService: PatternService) {}
+  pdfSrc = computed(() => {
+    const url = this.blobUrl();
+    return url ? this.sanitizer.bypassSecurityTrustResourceUrl(url) : null;
+  });
+
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
-    const targetId = 153; //todo: change this to real id
+    const patternId = this.route.snapshot.paramMap.get('id');
 
-    this.patternService.getPatternById(targetId).subscribe({
-      next: (data) => {
-        this.patternData = data;
-        this.pdfSrc = `http://localhost:8080/api/patterns/${data.id}/download`;
-        this.isLoading = false;
-      },
-      error: (error) => {
-        console.error('Failed to load pattern data', error);
-        this.errorMessage = 'Failed to load pattern data';
-        this.isLoading = false;
-      },
-    });
+    if (patternId) {
+      this.http.get<any>(`http://localhost:8080/api/patterns/${patternId}`).subscribe(meta => {
+        this.patternTitle.set(meta.title);
+      });
+
+      this.http.get(`http://localhost:8080/api/patterns/${patternId}/download`, { responseType: 'blob' })
+        .subscribe(blob => {
+          this.blobUrl.set(URL.createObjectURL(blob));
+        });
+    }
   }
 }
