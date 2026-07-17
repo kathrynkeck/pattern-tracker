@@ -1,0 +1,12 @@
+/* Target the canvas element where pdf.js draws the first page */
+canvas {
+  width: 100%;
+  height: 100%;
+  
+  /* This ensures the PDF snapshot clips nicely without stretching or distorting */
+  object-fit: cover; 
+  object-position: top; /* Keeps the top of the pattern page visible */
+  
+  display: block;
+  background-color: #f1f5f9; /* Soft gray placeholder while the PDF streams in */
+}

@@ -1,0 +1,79 @@
+.dashboard-wrapper {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    color: var(--magenta);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.pattern-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.pattern-card-btn {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--light-blue);
+    text-decoration: none;
+    color: inherit;
+    border: 3px solid var(--light-blue);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+.pattern-card-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-color: var(--medium-blue);
+}
+
+.card-preview {
+    position: relative;
+    background-color: var(--green);
+    height: 180px;
+    overflow: hidden;
+}
+
+.card-footer {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.pattern-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--magenta);
+  line-height: 1.4;
+}
+
+.action-tag {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--medium-blue);
+  align-self: flex-start;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #ffffff;
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  color: #64748b;
+}

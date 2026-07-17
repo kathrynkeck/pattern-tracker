@@ -9,8 +9,36 @@ html, body {
     /* Theme Palette Definitions */
     --light-blue: #b9d6f1;
     --medium-blue: #68aceb;
-    --light-yellow: #fff3d7;
+    --light-yellow: #f9f6b5;
     --magenta: #710043;
     --green: #afe059;
+    --pink: #ffc5d5;
     --text: #132f4b;
+}
+
+.button{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--pink);
+  color: var(--magenta);
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: var(--magenta);
+  color: var(--pink);
+  border-color: #94a3b8;
+  transform: translateX(-2px);
+}
+
+.button:active {
+  transform: translateX(0) scale(0.98);
 }

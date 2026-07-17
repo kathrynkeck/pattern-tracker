@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { PatternThumbnailComponent } from '../pattern-thumbnail/pattern-thumbnail.component';
 
 export interface PatternSummary {
   id: number;
@@ -9,7 +10,7 @@ export interface PatternSummary {
 
 @Component({
   selector: 'app-pattern-list',
-  imports: [RouterLink],
+  imports: [RouterLink, PatternThumbnailComponent],
   templateUrl: './pattern-list.component.html',
   styleUrl: './pattern-list.component.css',
 })

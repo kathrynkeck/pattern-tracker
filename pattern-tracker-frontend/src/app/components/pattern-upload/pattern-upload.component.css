@@ -1,0 +1,41 @@
+.btn-upload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  
+  background-color: var(--pink); 
+  color: var(--magenta);
+  
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px -1px rgba(52, 152, 219, 0.2);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover effect so it feels tactile when ready */
+.btn-upload:hover {
+  background-color: var(--magenta);
+  color: var(--pink);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px -2px rgba(52, 152, 219, 0.3);
+}
+
+.btn-upload:active {
+  transform: translateY(0);
+}
+
+.btn-upload:disabled {
+  background-color: #e2e8f0;
+  color: #94a3b8;
+  
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+  
+  opacity: 0.7; 
+}

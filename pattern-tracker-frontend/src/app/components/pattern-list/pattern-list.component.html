@@ -1,14 +1,17 @@
-<div class="list-container">
-    <h2>Select a Knitting Pattern</h2>
+<div class="dashboard-wrapper">
+    <h2 class="section-title">Your Knitting Patterns</h2>
 
     <div class="pattern-grid">
         @for (pattern of patterns(); track pattern.id) {
-            <div class="pattern-card">
-                <h3>{{ pattern.title }}</h3>
-                <a [routerLink]="['/view', pattern.id]" class="select-btn">
-                    Open Pattern
-                </a>
-            </div>
+            <a [routerLink]="['/view', pattern.id]" class="pattern-card-btn">
+                <div class="card-preview">
+                    <app-pattern-thumbnail [patternId]="pattern.id"></app-pattern-thumbnail>
+                </div>
+                <div class="card-footer">
+                    <h3 class="pattern-title">{{ pattern.title }}</h3>
+                    <span class="action-tag">Edited: </span>
+                </div>
+            </a>
         } @empty {
             <p>No patterns uploaded yet. Go to the upload page to add one!</p>
         }

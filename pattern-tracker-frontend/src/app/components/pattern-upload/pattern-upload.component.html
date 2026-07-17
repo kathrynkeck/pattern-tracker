@@ -8,7 +8,7 @@
         <label for="file">Select PDF:</label>
         <input type="file" id="file" (change)="onFileSelected($event)" accept=".pdf" />
     </div>
-    <button type="button" [disabled]="!patternTitle || !selectedFile" (click)="onUpload()">
+    <button class="btn-upload" type="button" [disabled]="!patternTitle || !selectedFile" (click)="onUpload()">
         Upload Pattern
     </button>
 </div>

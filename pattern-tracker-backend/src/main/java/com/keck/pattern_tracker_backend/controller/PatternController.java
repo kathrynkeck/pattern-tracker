@@ -46,7 +46,6 @@ public class PatternController {
     }
 
     @GetMapping("/{id}/download")
-    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Resource> downloadPatternFile(@PathVariable Long id) {
 
         Resource fileResource = patternService.loadPatternFileAsResource(id);

@@ -1,3 +1,17 @@
-.pattern-header {
-    color: var(--medium-blue);
+.viewer-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.viewer-window {
+  background-color: var(--light-blue);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  
+  /* Give the viewer section a solid minimum workspace height */
+  min-height: 850px; 
+  display: block;
 }

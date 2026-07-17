@@ -1,53 +1,62 @@
 {
-  "hash": "7b0bd42e",
-  "configHash": "32338329",
+  "hash": "93018554",
+  "configHash": "47b62b9c",
   "lockfileHash": "2bb0482b",
-  "browserHash": "9f2badcb",
+  "browserHash": "97443fc9",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "e356f8d3",
+      "fileHash": "3f2ee26a",
       "needsInterop": false
     },
     "@angular/common/http": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "7bab23e4",
+      "fileHash": "3cba72f0",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "809f66a4",
+      "fileHash": "b5b58f8b",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "377ed1b8",
+      "fileHash": "28b55e73",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "1037fa39",
+      "fileHash": "a51d6607",
       "needsInterop": false
     },
     "ng2-pdf-viewer": {
       "src": "../../../../../../node_modules/ng2-pdf-viewer/fesm2022/ng2-pdf-viewer.mjs",
       "file": "ng2-pdf-viewer.js",
-      "fileHash": "90251ca8",
+      "fileHash": "7a1748b1",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "42e50f59",
+      "fileHash": "ed4b0b30",
+      "needsInterop": false
+    },
+    "pdfjs-dist": {
+      "src": "../../../../../../node_modules/pdfjs-dist/build/pdf.mjs",
+      "file": "pdfjs-dist.js",
+      "fileHash": "fc059e1a",
       "needsInterop": false
     }
   },
   "chunks": {
+    "fs-E3MJXXJ4": {
+      "file": "fs-E3MJXXJ4.js"
+    },
     "http-NBSVXTSS": {
       "file": "http-NBSVXTSS.js"
     },
@@ -57,23 +66,23 @@
     "url-WBK5OZUH": {
       "file": "url-WBK5OZUH.js"
     },
-    "chunk-GO4RJPZX": {
-      "file": "chunk-GO4RJPZX.js"
+    "chunk-MTCGESEB": {
+      "file": "chunk-MTCGESEB.js"
     },
-    "chunk-676AXYUE": {
-      "file": "chunk-676AXYUE.js"
+    "chunk-7QAVOQCZ": {
+      "file": "chunk-7QAVOQCZ.js"
     },
-    "chunk-3KIGCMLP": {
-      "file": "chunk-3KIGCMLP.js"
+    "chunk-IXOIDV6I": {
+      "file": "chunk-IXOIDV6I.js"
     },
-    "chunk-4LN3G4JH": {
-      "file": "chunk-4LN3G4JH.js"
+    "chunk-34FWFXEX": {
+      "file": "chunk-34FWFXEX.js"
+    },
+    "chunk-XZNUQ5A7": {
+      "file": "chunk-XZNUQ5A7.js"
     },
     "chunk-SEFLNREK": {
       "file": "chunk-SEFLNREK.js"
-    },
-    "fs-E3MJXXJ4": {
-      "file": "fs-E3MJXXJ4.js"
     },
     "chunk-D7MF2QZF": {
       "file": "chunk-D7MF2QZF.js"
