@@ -1,5 +1,8 @@
 <div class="upload-container">
-    <h2>Upload a New Knitting Pattern</h2>
+    <div class="header-container">
+        <h2 class="section-title">Upload a New Knitting Pattern</h2>
+        <a routerLink="/patterns" class="button">Back to List</a>
+    </div>
     <div class="form-group">
         <label for="title">Pattern Title:</label>
         <input type="text" id="title" [(ngModel)]="patternTitle" placeholder="Enter pattern title" />

@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { PatternService } from '../../services/pattern.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-pattern-upload',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './pattern-upload.component.html',
   styleUrl: './pattern-upload.component.css',
 })
