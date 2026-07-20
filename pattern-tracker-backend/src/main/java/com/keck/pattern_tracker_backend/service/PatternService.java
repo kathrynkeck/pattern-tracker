@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -22,7 +23,7 @@ public class PatternService {
     // Local folder where pdfs are stored
     private final Path rootLocation = Paths.get("patterns");
 
-    public Pattern savePattern(String title, MultipartFile file) {
+    public Pattern savePattern(String title, MultipartFile file, String description) {
         try {
             // Create directory if it doesn't exist
             if (!Files.exists(rootLocation)) {
@@ -35,9 +36,13 @@ public class PatternService {
             Files.copy(file.getInputStream(), destinationFile, StandardCopyOption.REPLACE_EXISTING);
 
             // Add pattern to DB
+            LocalDateTime uploadedDateTime = LocalDateTime.now();
             Pattern pattern = new Pattern();
             pattern.setTitle(title);
             pattern.setFileStoragePath(destinationFile.toString());
+            pattern.setDescription(description);
+            pattern.setUploadedDateTime(uploadedDateTime);
+            pattern.setIsWip(false);
 
             return patternRepository.save(pattern);
 
@@ -53,6 +58,27 @@ public class PatternService {
     public Pattern getPatternById(Long id) {
         return patternRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Pattern not found with id: " + id));
+    }
+
+    public Pattern setWipTrue(Long id){
+        Pattern ptrn = patternRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pattern not found with id: " + id));
+        ptrn.setIsWip(true);
+        return patternRepository.save(ptrn);
+    }
+
+    public Pattern setWipFalse(Long id){
+        Pattern ptrn = patternRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pattern not found with id: " + id));
+        ptrn.setIsWip(false);
+        return patternRepository.save(ptrn);
+    }
+
+    public Pattern updateDescription(Long id, String description){
+        Pattern ptrn = patternRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pattern not found with id: " + id));
+        ptrn.setDescription(description);
+        return patternRepository.save(ptrn);
     }
 
     public Resource loadPatternFileAsResource(Long id) {

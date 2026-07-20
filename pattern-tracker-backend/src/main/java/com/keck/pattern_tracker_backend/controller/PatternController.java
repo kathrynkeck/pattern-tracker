@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +24,9 @@ public class PatternController {
 
     @PostMapping("/upload")
     public ResponseEntity<Pattern> uploadPattern(@RequestParam("title") String title,
-                                                 @RequestParam("file") MultipartFile file) {
-        Pattern savedPattern = patternService.savePattern(title, file);
+                                                 @RequestParam("file") MultipartFile file,
+                                                 @RequestParam("description") String description) {
+        Pattern savedPattern = patternService.savePattern(title, file, description);
         return ResponseEntity.ok(savedPattern);
     }
 
@@ -54,5 +56,24 @@ public class PatternController {
                 .contentType(MediaType.APPLICATION_PDF)
                 .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + fileResource.getFilename() + "\"")
                 .body(fileResource);
+    }
+
+    @PatchMapping("/{id}/wip")
+    public ResponseEntity<Pattern> setPatternToWip(@PathVariable Long id){
+        Pattern pattern = patternService.setWipTrue(id);
+        return ResponseEntity.ok(pattern);
+    }
+
+    @PatchMapping("/{id}/notWip")
+    public ResponseEntity<Pattern> setPatternToNotWip(@PathVariable Long id){
+        Pattern pattern = patternService.setWipFalse(id);
+        return ResponseEntity.ok(pattern);
+    }
+
+    @PatchMapping("{id}/description")
+    public ResponseEntity<Pattern> updateDescription(@PathVariable Long id,
+                                                     @RequestParam("description") String description){
+        Pattern pattern = patternService.updateDescription(id, description);
+        return ResponseEntity.ok(pattern);
     }
 }
