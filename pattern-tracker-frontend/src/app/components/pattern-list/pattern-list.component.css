@@ -110,3 +110,25 @@
 .button:active {
   transform: translateX(0) scale(0.98);
 }
+
+.card-container {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.wip-badge {
+  position: absolute;
+  bottom: 46px;
+  right: 20px;
+  background-color: var(--pink);
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}

@@ -4,14 +4,46 @@
   padding: 1rem;
 }
 
+.pattern-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0rem;
+}
+
+/* WIP Badge Style */
+.wip-badge {
+  background-color: #f72585; /* Adjust color as needed */
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
 .viewer-window {
   background-color: var(--light-blue);
   border-radius: 8px;
   padding: 1rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
   margin-top: 1rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  
-  /* Give the viewer section a solid minimum workspace height */
-  min-height: 850px; 
+  min-height: 850px;
   display: block;
+}
+
+.uploaded {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #848484;
 }

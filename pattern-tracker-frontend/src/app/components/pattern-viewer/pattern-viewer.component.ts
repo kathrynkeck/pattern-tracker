@@ -2,17 +2,20 @@ import { Component, OnInit, signal } from '@angular/core';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-pattern-viewer',
   standalone: true,
-  imports: [PdfViewerModule, RouterLink],
+  imports: [PdfViewerModule, RouterLink, DatePipe],
   templateUrl: './pattern-viewer.component.html',
   styleUrl: './pattern-viewer.component.css',
 })
 export class PatternViewerComponent implements OnInit {
   patternTitle = signal<string>('');
-
+  patternDescription = signal<string>('');
+  patternUploadDate = signal<string>('');
+  patternIsWip = signal<boolean>(false);
   pdfData = signal<Uint8Array | null>(null);
 
   constructor(
@@ -26,6 +29,9 @@ export class PatternViewerComponent implements OnInit {
     if (patternId) {
       this.http.get<any>(`http://localhost:8080/api/patterns/${patternId}`).subscribe(meta => {
         this.patternTitle.set(meta.title);
+        this.patternDescription.set(meta.description);
+        this.patternUploadDate.set(meta.uploadedDateTime);
+        this.patternIsWip.set(meta.isWip);
       });
 
       this.http.get(`http://localhost:8080/api/patterns/${patternId}/download`, { responseType: 'arraybuffer' })

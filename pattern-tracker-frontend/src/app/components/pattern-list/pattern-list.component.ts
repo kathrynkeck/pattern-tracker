@@ -2,15 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PatternThumbnailComponent } from '../pattern-thumbnail/pattern-thumbnail.component';
+import { DatePipe } from '@angular/common';
 
 export interface PatternSummary {
   id: number;
   title: string;
+  uploadedDateTime: string;
+  description: string;
+  isWip: boolean;
 }
 
 @Component({
   selector: 'app-pattern-list',
-  imports: [RouterLink, PatternThumbnailComponent],
+  imports: [RouterLink, PatternThumbnailComponent, DatePipe],
   templateUrl: './pattern-list.component.html',
   styleUrl: './pattern-list.component.css',
 })

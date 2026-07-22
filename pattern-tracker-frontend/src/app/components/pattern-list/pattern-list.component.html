@@ -7,17 +7,22 @@
     </div>
     <div class="pattern-grid">
         @for (pattern of patterns(); track pattern.id) {
+        <div class="card-container">
             <a [routerLink]="['/view', pattern.id]" class="pattern-card-btn">
+                @if (pattern.isWip) {
+                <span class="wip-badge">WIP</span>
+                }
                 <div class="card-preview">
                     <app-pattern-thumbnail [patternId]="pattern.id"></app-pattern-thumbnail>
                 </div>
                 <div class="card-footer">
                     <h3 class="pattern-title">{{ pattern.title }}</h3>
-                    <span class="action-tag">Edited: </span>
+                    <span class="action-tag">Uploaded: {{ pattern.uploadedDateTime | date }}</span>
                 </div>
             </a>
+        </div>
         } @empty {
-            <p>No patterns uploaded yet. Go to the upload page to add one!</p>
+        <p>No patterns uploaded yet. Go to the upload page to add one!</p>
         }
     </div>
 </div>

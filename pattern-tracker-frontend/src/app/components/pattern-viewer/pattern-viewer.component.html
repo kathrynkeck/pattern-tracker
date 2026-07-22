@@ -1,21 +1,30 @@
 <div class="viewer-container">
     <header class="pattern-header">
-        <a routerLink="/patterns" class="button">Back to List</a>
-        <h1>{{ patternTitle() }}</h1>
+        <div class="header-left">
+            <a routerLink="/patterns" class="button">Back to List</a>
+            <h1>{{ patternTitle() }}</h1>
+            <p>{{ patternDescription() }}</p>
+            <div class="uploaded">
+                Uploaded on: {{ patternUploadDate() | date }}
+            </div>
+        </div>
+
+        @if (patternIsWip()) {
+        <div class="wip-badge">
+            Work in Progress
+        </div>
+        }
     </header>
     @if (!pdfData()) {
-        <div>
-            <p>No PDF available</p>
-        </div>
+    <div>
+        <p>No PDF available</p>
+    </div>
     }
     @else {
-        <div class="viewer-window">
-            <pdf-viewer
-                [src]="pdfData()!"
-                [render-text]="true"
-                [original-size]="false"
-                style="width: 100%; height: 800px; display: block;">
-            </pdf-viewer>
-        </div>
+    <div class="viewer-window">
+        <pdf-viewer [src]="pdfData()!" [render-text]="true" [original-size]="false"
+            style="width: 100%; height: 800px; display: block;">
+        </pdf-viewer>
+    </div>
     }
 </div>
