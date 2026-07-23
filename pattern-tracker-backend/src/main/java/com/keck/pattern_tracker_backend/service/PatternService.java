@@ -42,6 +42,7 @@ public class PatternService {
             pattern.setFileStoragePath(destinationFile.toString());
             pattern.setDescription(description);
             pattern.setUploadedDateTime(uploadedDateTime);
+            pattern.setEditedDateTime(uploadedDateTime);
             pattern.setIsWip(false);
 
             return patternRepository.save(pattern);
@@ -64,6 +65,7 @@ public class PatternService {
         Pattern ptrn = patternRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Pattern not found with id: " + id));
         ptrn.setIsWip(true);
+        ptrn.setEditedDateTime(LocalDateTime.now());
         return patternRepository.save(ptrn);
     }
 
@@ -71,6 +73,7 @@ public class PatternService {
         Pattern ptrn = patternRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Pattern not found with id: " + id));
         ptrn.setIsWip(false);
+        ptrn.setEditedDateTime(LocalDateTime.now());
         return patternRepository.save(ptrn);
     }
 
@@ -78,6 +81,7 @@ public class PatternService {
         Pattern ptrn = patternRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Pattern not found with id: " + id));
         ptrn.setDescription(description);
+        ptrn.setEditedDateTime(LocalDateTime.now());
         return patternRepository.save(ptrn);
     }
 

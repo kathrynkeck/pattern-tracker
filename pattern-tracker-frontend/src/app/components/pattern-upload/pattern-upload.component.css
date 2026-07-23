@@ -1,9 +1,127 @@
+/* Container & Header Setup */
+.upload-container {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0 2rem 0;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  color: var(--magenta);
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Form Group & Label Layout */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--magenta);
+  margin-bottom: 0.5rem;
+}
+
+/* Base Form Inputs (Title) */
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  color: #334155;
+  background-color: #ffffff;
+  border: 2px solid var(--pink);
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  border-color: var(--magenta);
+  box-shadow: 0 0 0 3px rgba(139, 0, 139, 0.1);
+}
+
+.form-control::placeholder {
+  color: #94a3b8;
+}
+
+/* Distinct, Larger Description Box */
+.description-box {
+  resize: vertical;
+  min-height: 130px;
+  background-color: #fafafa; /* Distinct subtle tint */
+  border-style: dashed;     /* Unique dashed border */
+  line-height: 1.5;
+}
+
+.description-box:focus {
+  background-color: #ffffff;
+  border-style: solid;
+}
+
+/* Hidden Native File Input */
+.file-input-hidden {
+  display: none;
+}
+
+/* Styled File Input Bar */
+.file-picker-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0.4rem 0.4rem 1rem;
+  background-color: #ffffff;
+  border: 2px solid var(--pink);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.file-picker-bar:hover {
+  border-color: var(--magenta);
+}
+
+.file-placeholder {
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.file-placeholder.file-selected {
+  color: var(--magenta);
+  font-weight: 600;
+}
+
+.btn-browse {
+  padding: 0.4rem 0.9rem;
+  background-color: var(--pink);
+  color: var(--magenta);
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Main Action Button (Your Original Button Styles Retained) */
+.actions-container {
+  margin-top: 2rem;
+}
+
 .btn-upload {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
+  padding: 0.85rem 1.5rem;
   
   background-color: var(--pink); 
   color: var(--magenta);
@@ -17,14 +135,14 @@
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.btn-upload:hover {
+.btn-upload:hover:not(:disabled) {
   background-color: var(--magenta);
   color: var(--pink);
   transform: translateY(-1px);
   box-shadow: 0 6px 12px -2px rgba(52, 152, 219, 0.3);
 }
 
-.btn-upload:active {
+.btn-upload:active:not(:disabled) {
   transform: translateY(0);
 }
 
@@ -37,22 +155,4 @@
   transform: none;
   
   opacity: 0.7; 
-}
-
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin: 1rem 0 1rem 0;
-}
-
-.section-title {
-  font-size: 1.5rem;
-  color: var(--magenta);
-  margin-bottom: 1.5rem;
-  font-weight: 600;
-}
-
-.form-group {
-  margin-bottom: 1rem;
 }

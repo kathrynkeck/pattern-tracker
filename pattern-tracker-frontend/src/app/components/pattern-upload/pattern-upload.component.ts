@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class PatternUpload {
   patternTitle: string = '';
+  patternDescription: string = '';
   selectedFile: File | null = null;
 
   constructor(private patternService: PatternService) {}
@@ -29,12 +30,13 @@ export class PatternUpload {
       return;
     }
 
-    this.patternService.uploadPattern(this.patternTitle, this.selectedFile).subscribe({
+    this.patternService.uploadPattern(this.patternTitle, this.selectedFile, this.patternDescription).subscribe({
       next: (response) => {
         console.log('Upload successful!', response);
         alert('Pattern uploaded successfully!');
         // Reset form
         this.patternTitle = '';
+        this.patternDescription = '';
         this.selectedFile = null;
       },
       error: (error) => {

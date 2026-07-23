@@ -16,10 +16,11 @@ export class PatternService {
 
   constructor(private http: HttpClient) {}
 
-  uploadPattern(title: string, file: File): Observable<any> {
+  uploadPattern(title: string, file: File, description: string): Observable<any> {
     const formData = new FormData();
     formData.append('title', title);
     formData.append('file', file);
+    formData.append('description', description);
 
     return this.http.post(`${this.apiUrl}/upload`, formData);
   }

@@ -24,6 +24,9 @@ public class Pattern {
     // date the pattern was uploaded
     @Column(name = "uploaded-date-time", nullable = false)
     private LocalDateTime uploadedDateTime;
+    // date the pattern was last edited
+    @Column(name = "edited-date-time", nullable = false)
+    private LocalDateTime editedDateTime;
     // is the user currently working on this pattern
     private Boolean isWip;
 
