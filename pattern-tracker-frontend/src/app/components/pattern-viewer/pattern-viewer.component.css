@@ -4,32 +4,6 @@
   padding: 1rem;
 }
 
-.pattern-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 0.5rem;
-}
-
-.header-left {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0rem;
-}
-
-/* WIP Badge Style */
-.wip-badge {
-  background-color: #f72585; /* Adjust color as needed */
-  color: #ffffff;
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 0.35rem 0.85rem;
-  border-radius: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  white-space: nowrap;
-}
-
 .viewer-window {
   background-color: var(--light-blue);
   border-radius: 8px;
@@ -43,8 +17,132 @@
   display: block;
 }
 
+.viewer-container {
+  max-width: 1300px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.pattern-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  max-width: 65%;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #64748b;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.back-link:hover {
+  color: #0f172a;
+}
+
+.title-group h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--magenta);
+  margin: 0 0 0.35rem 0;
+  line-height: 1.25;
+}
+
+.title-group .description {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
 .uploaded {
-  margin-top: 1rem;
   font-size: 0.8rem;
-  color: #848484;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+/* Right Column & Actions */
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+/* Badge Styles */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.badge-wip {
+  background-color: #fce7f3;
+  color: #be185d;
+}
+
+.badge-wip .dot {
+  background-color: #be185d;
+}
+
+.badge-complete {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+
+.badge-complete .dot {
+  background-color: #0369a1;
+}
+.status-toggle-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.status-toggle-btn.btn-wip {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+
+.status-toggle-btn.btn-wip:hover {
+  background-color: #bae6fd;
+}
+
+.status-toggle-btn.btn-complete {
+  background-color: #fce7f3;
+  color: #be185d;
+}
+
+.status-toggle-btn.btn-complete:hover {
+  background-color: #fbcfe8;
 }

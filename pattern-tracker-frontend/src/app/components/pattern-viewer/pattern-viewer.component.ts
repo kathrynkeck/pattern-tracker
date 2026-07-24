@@ -21,7 +21,27 @@ export class PatternViewerComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient
-  ) {}
+  ) { }
+
+  toggleStatus(): void {
+    const patternId = this.route.snapshot.paramMap.get('id');
+    if (!patternId) return;
+    const nextIsWip = !this.patternIsWip();
+
+    this.patternIsWip.set(nextIsWip);
+
+    const endpoint = nextIsWip ? 'wip' : 'notWip';
+
+    this.http.patch<any>(`http://localhost:8080/api/patterns/${patternId}/${endpoint}`, {})
+      .subscribe({
+        next: (updatedPattern) => {},
+        error: (err) => {
+          console.error('Failed to update status on server:', err);
+          this.patternIsWip.set(!nextIsWip);
+          alert('Could not update status. Please try again.');
+        }
+      });
+  }
 
   ngOnInit(): void {
     const patternId = this.route.snapshot.paramMap.get('id');

@@ -7,7 +7,7 @@ import { DatePipe } from '@angular/common';
 export interface PatternSummary {
   id: number;
   title: string;
-  uploadedDateTime: string;
+  editedDateTime: string;
   description: string;
   isWip: boolean;
 }

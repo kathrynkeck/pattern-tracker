@@ -5,6 +5,7 @@ import com.keck.pattern_tracker_backend.repository.PatternRepository;
 import org.springframework.core.io.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -53,7 +54,7 @@ public class PatternService {
     }
 
     public List<Pattern> getAllPatterns() {
-        return patternRepository.findAll();
+        return patternRepository.findAll(Sort.by("editedDateTime").descending());
     }
 
     public Pattern getPatternById(Long id) {
@@ -61,7 +62,7 @@ public class PatternService {
                 .orElseThrow(() -> new RuntimeException("Pattern not found with id: " + id));
     }
 
-    public Pattern setWipTrue(Long id){
+    public Pattern setWipTrue(Long id) {
         Pattern ptrn = patternRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Pattern not found with id: " + id));
         ptrn.setIsWip(true);
@@ -69,7 +70,7 @@ public class PatternService {
         return patternRepository.save(ptrn);
     }
 
-    public Pattern setWipFalse(Long id){
+    public Pattern setWipFalse(Long id) {
         Pattern ptrn = patternRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Pattern not found with id: " + id));
         ptrn.setIsWip(false);
@@ -77,7 +78,7 @@ public class PatternService {
         return patternRepository.save(ptrn);
     }
 
-    public Pattern updateDescription(Long id, String description){
+    public Pattern updateDescription(Long id, String description) {
         Pattern ptrn = patternRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Pattern not found with id: " + id));
         ptrn.setDescription(description);

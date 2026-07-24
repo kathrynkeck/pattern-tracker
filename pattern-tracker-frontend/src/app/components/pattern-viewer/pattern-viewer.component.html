@@ -1,19 +1,30 @@
 <div class="viewer-container">
     <header class="pattern-header">
         <div class="header-left">
-            <a routerLink="/patterns" class="button">Back to List</a>
-            <h1>{{ patternTitle() }}</h1>
-            <p>{{ patternDescription() }}</p>
+            <a routerLink="/patterns" class="back-link">
+                <span class="arrow">&larr;</span> Back to List
+            </a>
+            <div class="title-group">
+                <h1>{{ patternTitle() }}</h1>
+                <p class="description">{{ patternDescription() }}</p>
+            </div>
             <div class="uploaded">
-                Uploaded on: {{ patternUploadDate() | date }}
+                Uploaded on {{ patternUploadDate() | date:'mediumDate' }}
             </div>
         </div>
-
-        @if (patternIsWip()) {
-        <div class="wip-badge">
-            Work in Progress
+        <div class="header-right">
+            <div class="status-container">
+                @if (patternIsWip()) {
+                <span class="badge badge-wip">
+                    <span class="dot"></span> Work In Progress
+                </span>
+                }
+            </div>
+            <button type="button" class="status-toggle-btn" [class.btn-wip]="patternIsWip()"
+                [class.btn-complete]="!patternIsWip()" (click)="toggleStatus()">
+                {{ patternIsWip() ? 'Mark as Complete' : 'Mark as In Progress' }}
+            </button>
         </div>
-        }
     </header>
     @if (!pdfData()) {
     <div>
