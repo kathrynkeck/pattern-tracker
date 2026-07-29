@@ -58,15 +58,25 @@ public class PatternController {
                 .body(fileResource);
     }
 
-    @PatchMapping("/{id}/wip")
-    public ResponseEntity<Pattern> setPatternToWip(@PathVariable Long id){
-        Pattern pattern = patternService.setWipTrue(id);
+    @PatchMapping("/{id}/wip/{value}")
+    public ResponseEntity<Pattern> setPatternToWip(@PathVariable Long id, @PathVariable boolean value){
+        Pattern pattern;
+        if(value){
+            pattern = patternService.setWip(id, true);
+        } else {
+            pattern = patternService.setWip(id, false);
+        }
         return ResponseEntity.ok(pattern);
     }
 
-    @PatchMapping("/{id}/notWip")
-    public ResponseEntity<Pattern> setPatternToNotWip(@PathVariable Long id){
-        Pattern pattern = patternService.setWipFalse(id);
+    @PatchMapping("/{id}/completed/{value}")
+    public ResponseEntity<Pattern> setPatternToCompleted(@PathVariable Long id, @PathVariable boolean value){
+        Pattern pattern;
+        if (value) {
+            pattern = patternService.setCompleted(id, true);
+        } else {
+            pattern = patternService.setCompleted(id, false);
+        }
         return ResponseEntity.ok(pattern);
     }
 

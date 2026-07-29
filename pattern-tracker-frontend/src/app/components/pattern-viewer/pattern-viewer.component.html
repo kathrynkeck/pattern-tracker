@@ -6,7 +6,26 @@
             </a>
             <div class="title-group">
                 <h1>{{ patternTitle() }}</h1>
-                <p class="description">{{ patternDescription() }}</p>
+
+                @if (!isEditingDescription()) {
+                <div class="description-wrapper">
+                    <p class="description">{{ patternDescription() }}</p>
+                    <button type="button" class="icon-btn edit-btn" (click)="enableEditDescription()"
+                        title="Edit Description">
+                        ✎ Edit
+                    </button>
+                </div>
+                } @else {
+                <div class="description-edit-form">
+                    <textarea class="edit-textarea" rows="4" [value]="tempDescription()"
+                        (input)="onDescriptionInput($event)" (keydown.enter)="handleKeyDown($event)"
+                        (keyup.escape)="cancelEditDescription()" #descInput></textarea>
+                    <div class="edit-actions">
+                        <button type="button" class="btn btn-save" (click)="saveDescription()">Save</button>
+                        <button type="button" class="btn btn-cancel" (click)="cancelEditDescription()">Cancel</button>
+                    </div>
+                </div>
+                }
             </div>
             <div class="uploaded">
                 Uploaded on {{ patternUploadDate() | date:'mediumDate' }}
@@ -18,12 +37,35 @@
                 <span class="badge badge-wip">
                     <span class="dot"></span> Work In Progress
                 </span>
+                } @else if (patternIsCompleted()) {
+                    <span class="badge badge-complete">
+                        <span class="dot"></span> Completed
+                    </span>
                 }
             </div>
-            <button type="button" class="status-toggle-btn" [class.btn-wip]="patternIsWip()"
-                [class.btn-complete]="!patternIsWip()" (click)="toggleStatus()">
-                {{ patternIsWip() ? 'Mark as Complete' : 'Mark as In Progress' }}
-            </button>
+            <div class="dates-container">
+                @if (startedDate()){
+                    <div class="date-item">
+                        <span class="date-label">Started:</span>
+                        {{ startedDate() | date:'mediumDate' }}
+                    </div>
+                }
+                @if (completedDate()){
+                    <div class="date-item">
+                        <span class="date-label">Completed:</span>
+                        {{ completedDate() | date:'mediumDate' }}
+                    </div>
+                }
+            </div>
+            @if (patternIsWip()) {
+                <button type="button" class="status-toggle-btn btn-complete" (click)="toggleStatus()">
+                    Mark as Complete
+                </button>
+            } @else {
+                <button type="button" class="status-toggle-btn btn-disabled" disabled title="Completed patterns cannot be changed back to WIP">
+                    <span class="checkmark"></span> Project Completed
+                </button>
+            }
         </div>
     </header>
     @if (!pdfData()) {

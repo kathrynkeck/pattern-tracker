@@ -3,6 +3,7 @@ package com.keck.pattern_tracker_backend.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,12 @@ public class Pattern {
     private LocalDateTime editedDateTime;
     // is the user currently working on this pattern
     private Boolean isWip;
+    // is the project completed
+    private Boolean isCompleted;
+    // date project is marked as started
+    private LocalDate startedDate;
+    // date project is marked as completed
+    private LocalDate completedDate;
 
     @OneToMany(mappedBy = "pattern", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Counter> counters = new ArrayList<>();
