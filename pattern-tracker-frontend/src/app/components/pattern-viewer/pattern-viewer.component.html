@@ -61,9 +61,9 @@
                 <button type="button" class="status-toggle-btn btn-complete" (click)="toggleStatus()">
                     Mark as Complete
                 </button>
-            } @else {
-                <button type="button" class="status-toggle-btn btn-disabled" disabled title="Completed patterns cannot be changed back to WIP">
-                    <span class="checkmark"></span> Project Completed
+            } @else if (!patternIsCompleted()) {
+                <button type="button" class="status-toggle-btn btn-wip" (click)="toggleStatus()">
+                    Mark as in Progress
                 </button>
             }
         </div>

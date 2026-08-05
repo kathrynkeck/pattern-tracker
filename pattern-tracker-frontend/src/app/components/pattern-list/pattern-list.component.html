@@ -11,6 +11,8 @@
             <a [routerLink]="['/view', pattern.id]" class="pattern-card-btn">
                 @if (pattern.isWip) {
                 <span class="wip-badge">WIP</span>
+                } @else {
+                <span class="completed-badge">Completed</span>
                 }
                 <div class="card-preview">
                     <app-pattern-thumbnail [patternId]="pattern.id"></app-pattern-thumbnail>

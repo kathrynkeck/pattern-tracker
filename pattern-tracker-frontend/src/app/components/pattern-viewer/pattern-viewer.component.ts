@@ -40,20 +40,36 @@ export class PatternViewerComponent implements OnInit {
     }
 
     if (this.patternIsWip()) {
-      this.http.patch<any>('http://localhost:8080/api/patterns/${patternId}/wip/false', null)
-      .subscribe({
-        next: (updatedPattern) => {
-          this.patternIsCompleted.set(true);
-          
-          if (updatedPattern.completedDate) {
-            this.completedDate.set(updatedPattern.completedDate);
+      this.http.patch<any>(`http://localhost:8080/api/patterns/${patternId}/completed/true`, null)
+        .subscribe({
+          next: (updatedPattern) => {
+            this.patternIsCompleted.set(true);
+            this.patternIsWip.set(false);
+
+            if (updatedPattern.completedDate) {
+              this.completedDate.set(updatedPattern.completedDate);
+            }
+          },
+          error: (err) => {
+            console.error('Failed to update status:', err);
+            alert('Failed to update pattern status. Please try again.');
           }
-        },
-        error: (err) => {
-          console.error('Failed to update status:', err);
-          alert('Failed to update pattern status. Please try again.');
-        }
-      });
+        });
+    } else {
+      this.http.patch<any>(`http://localhost:8080/api/patterns/${patternId}/wip/true`, null)
+        .subscribe({
+          next: (updatedPattern) => {
+            this.patternIsWip.set(true);
+
+            if (updatedPattern.startedDate) {
+              this.startedDate.set(updatedPattern.startedDate);
+            }
+          },
+          error: (err) => {
+            console.error('Failed to update status:', err);
+            alert('Failed to update pattern status. Please try again.');
+          }
+        });
     }
   }
 
@@ -66,6 +82,9 @@ export class PatternViewerComponent implements OnInit {
         this.patternDescription.set(meta.description);
         this.patternUploadDate.set(meta.uploadedDateTime);
         this.patternIsWip.set(meta.isWip);
+        this.patternIsCompleted.set(meta.isCompleted ?? meta.completed ?? false);
+        this.startedDate.set(meta.startedDate ?? null);
+        this.completedDate.set(meta.completedDate ?? null);
       });
 
       this.http.get(`http://localhost:8080/api/patterns/${patternId}/download`, { responseType: 'arraybuffer' })
