@@ -39,4 +39,14 @@ public class Pattern {
 
     @OneToMany(mappedBy = "pattern", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Counter> counters = new ArrayList<>();
+
+    public void addCounter(Counter counter) {
+        counters.add(counter);
+        counter.setPattern(this);
+    }
+
+    public void removeCounter(Counter counter) {
+        counters.remove(counter);
+        counter.setPattern(null);
+    }
 }
